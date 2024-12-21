@@ -1,118 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Hero</title>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background-color: black;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
-    .scene {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-    }
-    .car {
-      position: absolute;
-      bottom: 20%;
-      font-size: 5em;
-      transition: all 1s ease;
-    }
-    .red-car {
-      color: red;
-      left: -15%;
-      animation: move-right 3s linear forwards;
-    }
-    .green-car {
-      color: green;
-      right: -15%;
-      animation: move-left 3s linear forwards;
-    }
-    .rolls-royce {
-      position: absolute;
-      bottom: -50%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 6em;
-      animation: drive-up 4s 3s forwards;
-    }
-    .logo {
-      position: absolute;
-      bottom: 40%;
-      left: 50%;
-      transform: translateX(-50%) scale(0);
-      color: white;
-      font-size: 3em;
-      animation: show-logo 2s 7s forwards;
-    }
-    .flag {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%) rotate(-10deg);
-      width: 200px;
-      height: 100px;
-      background-color: white;
-      border: 2px solid black;
-      color: black;
-      text-align: center;
-      line-height: 100px;
-      font-size: 1.2em;
-      font-weight: bold;
-      animation: wave 0.5s 7s infinite;
-      display: none;
-    }
-    .flag.show {
-      display: block;
-    }
-    @keyframes move-right {
-      to {
-        left: 120%;
-      }
-    }
-    @keyframes move-left {
-      to {
-        right: 120%;
-      }
-    }
-    @keyframes drive-up {
-      to {
-        bottom: 30%;
-      }
-    }
-    @keyframes show-logo {
-      to {
-        transform: translateX(-50%) scale(1);
-      }
-    }
-    @keyframes wave {
-      0%, 100% {
-        transform: translateX(-50%) rotate(-10deg);
-      }
-      50% {
-        transform: translateX(-50%) rotate(10deg);
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Animation</title>
+    <!-- Font Awesome CDN for car icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Material Icons CDN for the flag icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        .car {
+            position: absolute;
+            font-size: 50px;
+            transition: transform 2s ease;
+        }
+        .red-car {
+            color: red;
+        }
+        .green-car {
+            color: green;
+        }
+        .flag {
+            position: absolute;
+            font-size: 100px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+        .flag-icon {
+            position: absolute;
+            font-size: 100px;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+    </style>
 </head>
 <body>
-  <div class="scene">
-    <i class="fas fa-car-side car red-car"></i>
-    <i class="fas fa-car-side car green-car"></i>
-    <i class="fas fa-car roll-rolls rolls-royce"></i>
-    <div class="logo">Rolls Royce</div>
-    <div class="flag">Happy Birthday Hero</div>
-  </div>
-  <script>
-    setTimeout(() => {
-      document.querySelector('.flag').classList.add('show');
-    }, 7000);
-  </script>
+    <!-- Red car (Font Awesome car icon) -->
+    <i class="fas fa-car red-car car" id="redCar"></i>
+
+    <!-- Green car (Font Awesome car icon) -->
+    <i class="fas fa-car green-car car" id="greenCar"></i>
+
+    <!-- Flag (Material Icon) -->
+    <div class="flag">
+        <i class="material-icons">flag</i>
+    </div>
+
+    <!-- Rolls Royce logo and the flag -->
+    <div class="flag-icon">
+        <i class="material-icons">flag</i>
+    </div>
+
+    <script>
+        // Animating the red and green cars
+        const redCar = document.getElementById('redCar');
+        const greenCar = document.getElementById('greenCar');
+        const flag = document.querySelector('.flag');
+        const flagIcon = document.querySelector('.flag-icon');
+
+        // Red car animation from left to right
+        redCar.style.left = '-100px';
+        redCar.style.top = '20%';
+        setTimeout(() => {
+            redCar.style.transform = 'translateX(100vw)';
+        }, 500);
+
+        // Green car animation from right to left
+        greenCar.style.right = '-100px';
+        greenCar.style.top = '40%';
+        setTimeout(() => {
+            greenCar.style.transform = 'translateX(-100vw)';
+        }, 500);
+
+        // Rolls Royce logo and flag animation
+        setTimeout(() => {
+            flag.style.opacity = 1;
+            flagIcon.style.opacity = 1;
+        }, 2500); // Delay for 2.5 seconds before showing the flag
+    </script>
 </body>
 </html>
